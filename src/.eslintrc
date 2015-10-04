@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "angular"
+  ],
+  "rules": {
+    "indent": [2, 2],
+    "quotes": [2, "single", "avoid-escape"],
+    "no-use-before-define": [2, "nofunc"],
+    "no-multiple-empty-lines": [2, {"max": 1}],
+    "no-nested-ternary": 2,
+    "semi-spacing": 2,
+    "no-trailing-spaces": 2,
+    "no-irregular-whitespace": 2,
+    "use-isnan": 2,
+    "max-len": [2, 120, 2],
+    "no-warning-comments": [2, { "terms": ["todo", "fixme", "refactor", "refactoring", "crap"], "location": "anywhere" }],
+    "new-cap": [2, { "newIsCap": true, "capIsNew": true, "capIsNewExceptions": [] }]
+  }
+}
