@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="../src/directive.js"></script>
+    <script type="text/javascript">
+      angular.module('app', ['if'])
+      .controller('MainCtrl',['$scope', function($scope) {
+          //$scope.tags = ['london'];
+          $scope.tags = [];
+      }]);
+    </script>
+  </head>
+  <body>
+    <div class="one-cpt-ctn" ng-controller="MainCtrl">
+      <tag-search-box class="tag-search" tags="tags" placeholder="search for #london"></tag-search-box>
+    </div>
+  </body>
+</html>
