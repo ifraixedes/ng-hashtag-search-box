@@ -14,11 +14,12 @@ angular.module('if', [])
     var spanCurrentElem = children[0];
     var inputElem = children[1];
 
+    spanCurrentElem.addEventListener('click', inputElem.focus.bind(inputElem));
     inputElem.addEventListener('keyup', inputOnKeyup);
     init();
 
     function init() {
-      var hashtags = (scope.tags) ? tagsToHashTags(scope.tags) : null;
+      var hashtags = (scope.tags) ? tagsToHashtags(scope.tags) : null;
 
       if ((hashtags) && (hashtags.length)) {
         spanCurrentElem.textContent = hashtags.join(' ');
@@ -97,7 +98,7 @@ angular.module('if', [])
       spanCurrentElem.textContent = spanText;
     }
 
-    function tagsToHashTags(tags) {
+    function tagsToHashtags(tags) {
       var hashtags = [];
       tags.forEach(function (t) {
         hashtags.push('#' + t.trim());
