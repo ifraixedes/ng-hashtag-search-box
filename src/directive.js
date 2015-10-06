@@ -3,7 +3,8 @@ angular.module('if', [])
   return {
     restrict: 'E',
     scope: {
-      tags: '='
+      tags: '=',
+      onChange: '='
     },
     templateUrl: '../src/template.html',
     link: link
@@ -96,6 +97,7 @@ angular.module('if', [])
       }
 
       spanCurrentElem.textContent = spanText;
+      scope.onChange(hashtagsTextToTags(spanText));
     }
 
     function tagsToHashtags(tags) {
@@ -105,6 +107,17 @@ angular.module('if', [])
       });
 
       return hashtags;
+    }
+
+    var hashtagsTextMatcher = /\s*#(\S+)\s*/g
+    function hashtagsTextToTags(hashtagsText) {
+      var tags = [];
+
+      while ((match = hashtagsTextMatcher.exec(hashtagsText)) != null) {
+        tags.push(match[1]);
+      }
+
+      return tags;
     }
   }
 

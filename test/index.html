@@ -7,14 +7,23 @@
     <script type="text/javascript">
       angular.module('app', ['if'])
       .controller('MainCtrl',['$scope', function($scope) {
-          //$scope.tags = ['london'];
-          $scope.tags = [];
+          $scope.initialTags = ['london', 'barcelona'];
+          $scope.currentTags = '';
+          $scope.onChange = function (currentTags) {
+            $scope.currentTags = currentTags.join(', ');
+            $scope.$digest();
+          };
       }]);
     </script>
   </head>
   <body>
-    <div class="one-cpt-ctn" ng-controller="MainCtrl">
-      <tag-search-box class="tag-search" tags="tags" placeholder="search for #london"></tag-search-box>
+  <div ng-controller="MainCtrl">
+    <div class="one-cpt-ctn">
+      <tag-search-box class="tag-search" tags="initialTags" on-change="onChange" placeholder="search for #london"></tag-search-box>
     </div>
+    <div class="one-cpt-ctn">
+      <p>{{currentTags}}</p>
+    </div>
+  </div>
   </body>
 </html>
