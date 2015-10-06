@@ -9,7 +9,7 @@ angular.module('if', [])
     link: link
   };
 
-  function link(scope, elem, attr) {
+  function link(scope, elem, attrs) {
     var children = elem.children();
     var spanCurrentElem = children[0];
     var inputElem = children[1];
@@ -24,7 +24,7 @@ angular.module('if', [])
         spanCurrentElem.textContent = hashtags.join(' ');
         inputElem.setAttribute('placeholder', '');
       } else {
-        inputElem.setAttribute('placeholder', attr.placeholder || '');
+        inputElem.setAttribute('placeholder', attrs.placeholder || '');
       }
     }
 
@@ -56,6 +56,8 @@ angular.module('if', [])
       var lastIdx;
       var spanText = spanCurrentElem.textContent;
 
+      inputElem.setAttribute('placeholder', '');
+
       if (op.name === 'remove') {
         var lastIdx = spanText.length - 1;
         spanText = spanText.substring(0, lastIdx);
@@ -63,6 +65,10 @@ angular.module('if', [])
         lastIdx--;
         if ((lastIdx >= 0) && ((spanText[lastIdx] === ' ') || (spanText === '#'))) {
           spanText = spanText.substring(0, lastIdx);
+        }
+
+        if (spanText === '') {
+          inputElem.setAttribute('placeholder', attrs.placeholder);
         }
       } else if (op.name === 'add') {
         var inputHashtag = inputHashtagRegExp.exec(op.text);
