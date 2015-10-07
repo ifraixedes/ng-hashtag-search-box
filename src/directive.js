@@ -97,7 +97,38 @@ angular.module('if', [])
       }
 
       spanCurrentElem.textContent = spanText;
-      scope.onChange(hashtagsTextToTags(spanText));
+      setSuggestion(scope.onChange(hashtagsTextToTags(spanText)));
+    }
+
+    // This variable is used as state of `setSuggestion` function
+    var lastSuggestionCanceller = function () {};
+    /**
+     * Cancell the suggestion in progress if any and regiester a promise resolver
+     * for the one passed as a parameter to render in the input box the suggestion
+     * when resolved.
+     *
+     * @param {Promise} [promise] - Promise which should be resolved with the suggestion.
+     *          When it isn't provided only cancel the last suggestion promise in progress.
+     */
+    function setSuggestion(promise) {
+      lastSuggestionCanceller();
+
+      if (!promise) {
+        return;
+      }
+
+      var cancelled = false;
+      promise.then(function (suggestion) {
+        if ((cancelled) || (!suggestion)) {
+          return;
+        }
+
+        inputElem.setAttribute('placeholder', suggestion);
+      });
+
+      lastSuggestionCanceller = function () {
+        cancelled = true;
+      };
     }
 
     function tagsToHashtags(tags) {

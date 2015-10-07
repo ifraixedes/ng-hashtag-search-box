@@ -6,12 +6,28 @@
     <script type="text/javascript" src="../src/directive.js"></script>
     <script type="text/javascript">
       angular.module('app', ['if'])
-      .controller('MainCtrl',['$scope', function($scope) {
+      .controller('MainCtrl',['$scope', '$q', function($scope, $q) {
+          var suggestions = ['barcelona', 'london', 'rome', 'berlin'];
+
           $scope.initialTags = ['london', 'barcelona'];
           $scope.currentTags = '';
           $scope.onChange = function (currentTags) {
             $scope.currentTags = currentTags.join(', ');
             $scope.$digest();
+
+            return $q(function (resolve) {
+              var lastTagRegExp = new RegExp('^' + currentTags[currentTags.length - 1] + '(.*)$', 'i');
+
+              var match;
+              var i;
+              for (i = 0; i < suggestions.length; i++) {
+                match = lastTagRegExp.exec(suggestions[i]);
+                if (match) {
+                  resolve(match[1]);
+                  return;
+                }
+              }
+            });
           };
       }]);
     </script>
