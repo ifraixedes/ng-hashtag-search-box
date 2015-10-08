@@ -15,6 +15,7 @@ angular.module('if', [])
     var children = elem.children();
     var spanCurrentElem = children[0];
     var inputElem = children[1];
+    var initPlaceholder = attrs.placeholder || '';
 
     spanCurrentElem.addEventListener('click', inputElem.focus.bind(inputElem));
     inputElem.addEventListener('keyup', inputOnKeyup);
@@ -27,7 +28,7 @@ angular.module('if', [])
         spanCurrentElem.textContent = hashtags.join(' ');
         inputElem.setAttribute('placeholder', '');
       } else {
-        inputElem.setAttribute('placeholder', attrs.placeholder || '');
+        inputElem.setAttribute('placeholder', initPlaceholder);
       }
     }
 
@@ -37,6 +38,7 @@ angular.module('if', [])
       if (evt.keyCode === enterCode) {
         scope.onPressEnter(hashtagsTextToTags(spanCurrentElem.textContent));
         spanCurrentElem.textContent = '';
+        inputElem.setAttribute('placeholder', initPlaceholder);
         return;
       }
 
@@ -64,6 +66,7 @@ angular.module('if', [])
      */
     function updateHastagsText(op) {
       var lastIdx;
+      var cancelSuggestion = false;
       var spanText = spanCurrentElem.textContent;
 
       inputElem.setAttribute('placeholder', '');
@@ -75,14 +78,18 @@ angular.module('if', [])
         lastIdx--;
         if ((lastIdx >= 0) && ((spanText[lastIdx] === ' ') || (spanText === '#'))) {
           spanText = spanText.substring(0, lastIdx);
+          cancelSuggestion = true;
         }
 
         if (spanText === '') {
-          inputElem.setAttribute('placeholder', attrs.placeholder);
+          // Nothing to search
+          inputElem.setAttribute('placeholder', initPlaceholder);
+          cancelSuggestion = true;
         }
       } else if (op.name === 'add') {
         var inputHashtag = inputHashtagRegExp.exec(op.text);
         if (!inputHashtag) {
+          // Unexpected text format
           return;
         }
 
@@ -93,10 +100,12 @@ angular.module('if', [])
           if (spanText[spanText.length - 1] !== '#') {
             // Exclude # and blanks when there are several
             spanText += ' #';
+            cancelSuggestion = true;
           }
         } else if (spanText === '') {
           // Treat the first letter
           spanText = '#';
+          cancelSuggestion = true;
         }
 
         spanText += inputHashtag[3];
@@ -105,7 +114,9 @@ angular.module('if', [])
       }
 
       spanCurrentElem.textContent = spanText;
-      setSuggestion(scope.onChange(hashtagsTextToTags(spanText)));
+      if (!cancelSuggestion) {
+        setSuggestion(scope.onChange(hashtagsTextToTags(spanText)));
+      }
     }
 
     // This variable is used as state of `setSuggestion` function
