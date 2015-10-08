@@ -1,4 +1,4 @@
-angular.module('if', [])
+angular.module('tagSearchBox', [])
 .directive('tagSearchBox', function () {
   return {
     restrict: 'E',
