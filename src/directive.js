@@ -6,7 +6,7 @@ angular.module('if', [])
       tags: '=',
       onChange: '='
     },
-    templateUrl: '../src/template.html',
+    template: '<span></span><input type="text">',
     link: link
   };
 
