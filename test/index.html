@@ -11,8 +11,13 @@
 
           $scope.initialTags = ['london', 'barcelona'];
           $scope.currentTags = '';
+          $scope.onPressEnter = function (tags) {
+            $scope.currentTags = 'searching: ' + tags.join(', ');
+            $scope.$digest();
+          };
+
           $scope.onChange = function (currentTags) {
-            $scope.currentTags = currentTags.join(', ');
+            $scope.currentTags = '';
             $scope.$digest();
 
             return $q(function (resolve) {
@@ -35,7 +40,7 @@
   <body>
   <div ng-controller="MainCtrl">
     <div class="one-cpt-ctn">
-      <tag-search-box class="tag-search" tags="initialTags" on-change="onChange" placeholder="search for #london"></tag-search-box>
+      <tag-search-box class="tag-search" tags="initialTags" on-change="onChange" on-press-enter="onPressEnter" placeholder="search for #london"></tag-search-box>
     </div>
     <div class="one-cpt-ctn">
       <p>{{currentTags}}</p>

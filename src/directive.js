@@ -4,7 +4,8 @@ angular.module('if', [])
     restrict: 'E',
     scope: {
       tags: '=',
-      onChange: '='
+      onChange: '=',
+      onPressEnter: '='
     },
     template: '<span></span><input type="text">',
     link: link
@@ -31,7 +32,14 @@ angular.module('if', [])
     }
 
     var backspaceCode = 8;
+    var enterCode = 13;
     function inputOnKeyup(evt) {
+      if (evt.keyCode === enterCode) {
+        scope.onPressEnter(hashtagsTextToTags(spanCurrentElem.textContent));
+        spanCurrentElem.textContent = '';
+        return;
+      }
+
       if (evt.keyCode === backspaceCode) {
         updateHastagsText({ name: 'remove' });
       } else {
