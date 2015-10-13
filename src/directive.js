@@ -13,11 +13,11 @@ angular.module('tagSearchBox', [])
 
   function link(scope, elem, attrs) {
     var children = elem.children();
-    var spanCurrentElem = children[0];
+    var spanElem = children[0];
     var inputElem = children[1];
     var initPlaceholder = attrs.placeholder || '';
 
-    spanCurrentElem.addEventListener('click', inputElem.focus.bind(inputElem));
+    spanElem.addEventListener('click', inputElem.focus.bind(inputElem));
     inputElem.addEventListener('keyup', inputOnKeyup);
     inputElem.addEventListener('keydown', inputOnKeydown);
     init();
@@ -26,7 +26,7 @@ angular.module('tagSearchBox', [])
       var hashtags = (scope.tags) ? tagsToHashtags(scope.tags) : null;
 
       if ((hashtags) && (hashtags.length)) {
-        spanCurrentElem.textContent = hashtags.join(' ');
+        spanElem.textContent = hashtags.join(' ');
         inputElem.setAttribute('placeholder', '');
       } else {
         inputElem.setAttribute('placeholder', initPlaceholder);
@@ -37,8 +37,8 @@ angular.module('tagSearchBox', [])
     var enterCode = 13;
     function inputOnKeyup(evt) {
       if (evt.keyCode === enterCode) {
-        scope.onPressEnter(hashtagsTextToTags(spanCurrentElem.textContent));
-        spanCurrentElem.textContent = '';
+        scope.onPressEnter(hashtagsTextToTags(spanElem.textContent));
+        spanElem.textContent = '';
         inputElem.setAttribute('placeholder', initPlaceholder);
         return;
       }
@@ -77,7 +77,7 @@ angular.module('tagSearchBox', [])
     function updateHastagsText(op) {
       var lastIdx;
       var cancelSuggestion = false;
-      var spanText = spanCurrentElem.textContent;
+      var spanText = spanElem.textContent;
 
       inputElem.setAttribute('placeholder', '');
 
@@ -123,7 +123,7 @@ angular.module('tagSearchBox', [])
         return;
       }
 
-      spanCurrentElem.textContent = spanText;
+      spanElem.textContent = spanText;
       if (!cancelSuggestion) {
         setSuggestion(scope.onChange(hashtagsTextToTags(spanText)));
       }
@@ -164,7 +164,7 @@ angular.module('tagSearchBox', [])
       var suggestion = inputElem.getAttribute('placeholder');
 
       if (suggestion) {
-        spanCurrentElem.textContent += suggestion;
+        spanElem.textContent += suggestion;
       }
     }
 
