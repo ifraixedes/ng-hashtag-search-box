@@ -19,6 +19,7 @@ angular.module('tagSearchBox', [])
 
     spanCurrentElem.addEventListener('click', inputElem.focus.bind(inputElem));
     inputElem.addEventListener('keyup', inputOnKeyup);
+    inputElem.addEventListener('keydown', inputOnKeydown);
     init();
 
     function init() {
@@ -49,6 +50,15 @@ angular.module('tagSearchBox', [])
       }
 
       inputElem.value = '';
+    }
+
+    var tabCode = 9;
+    function inputOnKeydown(evt) {
+      if (evt.keyCode === tabCode) {
+        evt.preventDefault();
+        autoComplete();
+        return;
+      }
     }
 
     var inputHashtagRegExp = /^(\s*)(#+\s*)?#*(\S*)/;
@@ -148,6 +158,14 @@ angular.module('tagSearchBox', [])
       lastSuggestionCanceller = function () {
         cancelled = true;
       };
+    }
+
+    function autoComplete() {
+      var suggestion = inputElem.getAttribute('placeholder');
+
+      if (suggestion) {
+        spanCurrentElem.textContent += suggestion;
+      }
     }
 
     function tagsToHashtags(tags) {
