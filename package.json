@@ -1,6 +1,6 @@
 {
   "name": "ng-hashtag-search-box",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Hashtag search box with inline suggestion",
   "main": "dist/ng-hashtag-search-box.min.js",
   "respository": {
