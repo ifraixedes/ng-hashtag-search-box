@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node dev-env.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mkdir -p dist && uglifyjs src/directive.js --source-map dist/ng-hashtag-search-box.js.map --source-map-root /node_modules/ng-hashtag-search-box/dist --source-map-url /node_modules/ng-hashtag-search-box/dist/ng-hashtag-search-box.js.map --source-map-include-sources -o dist/ng-hashtag-search-box.min.js -c --comments"
+    "build": "mkdir -p dist && uglifyjs src/directive.js --source-map dist/ng-hashtag-search-box.js.map --source-map-root /node_modules/ng-hashtag-search-box/dist --source-map-url /node_modules/ng-hashtag-search-box/dist/ng-hashtag-search-box.js.map --source-map-include-sources -o dist/ng-hashtag-search-box.min.js -c --comments",
+    "prepublish": "npm run-script build"
   },
   "keywords": [
     "angular",
