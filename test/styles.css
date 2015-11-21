@@ -2,8 +2,12 @@ body {
   height: 100vh;
 }
 
+.cpts-ctn {
+  height: 100vh;
+}
+
 .one-cpt-ctn {
-  height: 60%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,11 +15,11 @@ body {
 }
 
 .tag-search {
-
+  border: 1px solid grey;
 }
 
 .tag-search input {
   border: 0;
   outline: 0;
-  font-size: 1em;
+  font-size: 0.9em;
 }

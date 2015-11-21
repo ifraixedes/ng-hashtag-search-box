@@ -9,7 +9,6 @@
       .controller('MainCtrl',['$scope', '$q', function($scope, $q) {
           var suggestions = ['barcelona', 'london', 'rome', 'berlin'];
 
-          $scope.initialTags = ['london', 'barcelona'];
           $scope.currentTags = '';
           $scope.onPressEnter = function (tags) {
             $scope.currentTags = 'searching: ' + tags.join(', ');
@@ -38,9 +37,9 @@
     </script>
   </head>
   <body>
-  <div ng-controller="MainCtrl">
+  <div class="cpts-ctn" ng-controller="MainCtrl">
     <div class="one-cpt-ctn">
-      <tag-search-box class="tag-search" tags="initialTags" on-change="onChange" on-press-enter="onPressEnter" placeholder="search for #london"></tag-search-box>
+      <tag-search-box class="tag-search" tags="['london', 'berlin']" on-change="onChange" on-press-enter="onPressEnter" placeholder="search for #london"/>
     </div>
     <div class="one-cpt-ctn">
       <p>{{currentTags}}</p>
