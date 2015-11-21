@@ -4,7 +4,8 @@
   "description": "Hashtag search box with inline suggestion",
   "main": "dist/hashtag-search.js",
   "scripts": {
-    "dev": "node dev-env.js"
+    "dev": "node dev-env.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "angular",
@@ -18,6 +19,6 @@
     "angular": "^1.4.7",
     "browser-sync": "^2.9.8",
     "eslint": "^1.6.0",
-    "eslint-plugin-angular": "^0.12.0",
+    "eslint-plugin-angular": "^0.12.0"
   }
 }
