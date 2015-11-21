@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "Hashtag search box with inline suggestion",
   "main": "dist/ng-hashtag-search-box.min.js",
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/ifraixedes/ng-hashtag-search-box.git"
+  },
+  "bugs": "https://github.com/ifraixedes/ng-hashtags-search-box/issues",
   "scripts": {
     "dev": "node dev-env.js",
     "test": "echo \"Error: no test specified\" && exit 1",
