@@ -2,10 +2,11 @@
   "name": "ng-hashtag-search-box",
   "version": "0.0.0",
   "description": "Hashtag search box with inline suggestion",
-  "main": "dist/hashtag-search.js",
+  "main": "dist/ng-hashtag-search-box.min.js",
   "scripts": {
     "dev": "node dev-env.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p dist && uglifyjs src/directive.js --source-map dist/ng-hashtag-search-box.js.map --source-map-root /node_modules/ng-hashtag-search-box/dist --source-map-url /node_modules/ng-hashtag-search-box/dist/ng-hashtag-search-box.js.map --source-map-include-sources -o dist/ng-hashtag-search-box.min.js -c --comments"
   },
   "keywords": [
     "angular",
@@ -19,6 +20,7 @@
     "angular": "^1.4.7",
     "browser-sync": "^2.9.8",
     "eslint": "^1.6.0",
-    "eslint-plugin-angular": "^0.12.0"
+    "eslint-plugin-angular": "^0.12.0",
+    "uglify-js": "^2.6.1"
   }
 }

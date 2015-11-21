@@ -1,3 +1,4 @@
+/*@license MIT Ivan Fraixedes <ivan@fraixed.es> (http://ivan.fraixed.es)*/
 angular.module('tagSearchBox', [])
 .directive('tagSearchBox', function () {
   return {
