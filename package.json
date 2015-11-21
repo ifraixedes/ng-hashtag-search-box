@@ -10,6 +10,8 @@
   "bugs": "https://github.com/ifraixedes/ng-hashtags-search-box/issues",
   "scripts": {
     "dev": "node dev-env.js",
+    "wdm": "webdriver-manager",
+    "e2e": "protractor test/conf.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mkdir -p dist && uglifyjs src/directive.js --source-map dist/ng-hashtag-search-box.js.map --source-map-root /node_modules/ng-hashtag-search-box/dist --source-map-url /node_modules/ng-hashtag-search-box/dist/ng-hashtag-search-box.js.map --source-map-include-sources -o dist/ng-hashtag-search-box.min.js -c --comments",
     "prepublish": "npm run-script build"
@@ -27,6 +29,7 @@
     "browser-sync": "^2.9.8",
     "eslint": "^1.6.0",
     "eslint-plugin-angular": "^0.12.0",
-    "uglify-js": "^2.6.1"
+    "uglify-js": "^2.6.1",
+    "protractor": "^2.4.0"
   }
 }
